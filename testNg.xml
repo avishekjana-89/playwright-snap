@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Playwright automation suite" thread-count="5" parallel="methods">
+    <listeners>
+        <listener class-name="com.testng.listener.TestListener"/>
+    </listeners>
     <parameter name="browser" value="chrome"/>
     <test name="Automation functional tests">
         <packages>

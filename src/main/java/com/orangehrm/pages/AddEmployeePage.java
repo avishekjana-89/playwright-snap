@@ -6,6 +6,7 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 import com.orangehrm.components.CreateLoginComponent;
 import com.orangehrm.models.Employee;
+import org.testng.Assert;
 
 import java.nio.file.Paths;
 
@@ -66,8 +67,8 @@ public class AddEmployeePage extends BasePage {
     }
 
     public void verifySuccessMessage() {
-        assertThat(this.toastTitle).hasText("Success");
-        assertThat(this.toastMessage).hasText("Successfully Saved");
+        Assert.assertEquals(this.toastTitle.textContent(), "Success");
+        Assert.assertEquals(this.toastMessage.textContent(), "Successfully Saved");
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.orangehrm.tests;
 
+import com.extent.reports.ReportManager;
 import com.orangehrm.models.Employee;
 import com.orangehrm.pages.AddEmployeePage;
 import com.orangehrm.pages.DashboardPage;
@@ -14,6 +15,7 @@ import org.testng.annotations.Test;
 
 import java.nio.charset.StandardCharsets;
 
+import static com.extent.reports.ReportManager.getTest;
 import static org.jeasy.random.FieldPredicates.inClass;
 import static org.jeasy.random.FieldPredicates.named;
 
@@ -21,6 +23,8 @@ public class AddEmployeeTest extends BaseTest {
 
     @Test(dataProvider = "getData", groups = {"smoke", "regression"})
     public void addEmployeeTest(String flow, Employee employee) {
+        getTest().info("Flow :: " + flow);
+        getTest().info("Employee data :: " + employee);
         LoginPage loginPage = new LoginPage(getPage());
         DashboardPage dashboardPage = new DashboardPage(getPage());
         EmployeeListPage employeeListPage = new EmployeeListPage(getPage());

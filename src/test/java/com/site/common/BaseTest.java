@@ -1,20 +1,24 @@
 package com.site.common;
 
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.playwright.factory.PlaywrightFactory;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
-import static com.playwright.factory.PlaywrightFactory.browserMap;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static com.extent.reports.ReportManager.getTest;
 
 public class BaseTest {
-    private final ThreadLocal<Playwright> tlPlaywright = new ThreadLocal<>();
-    private final ThreadLocal<Browser> tlBrowser = new ThreadLocal<>();
-    private final ThreadLocal<BrowserContext> tlBrowserContext = new ThreadLocal<>();
-    private final ThreadLocal<Page> tlPage = new ThreadLocal<>();
+
+    PlaywrightFactory playwrightFactory = new PlaywrightFactory();
 
     @BeforeSuite
     public void projectSetup() {
@@ -24,53 +28,44 @@ public class BaseTest {
     @BeforeMethod(groups = {"smoke", "regression"})
     @Parameters({"browser"})
     public void setUp(@Optional("chrome") String browserName) {
-        Playwright playwright = PlaywrightFactory.getPlaywright();
-        tlPlaywright.set(playwright);
-
-        Browser browser = PlaywrightFactory.getBrowser(playwright, browserMap.get(browserName));
-        tlBrowser.set(browser);
-
-        BrowserContext browserContext = PlaywrightFactory.getBrowserContext(browser, PlaywrightFactory.contextFunction);
-        tlBrowserContext.set(browserContext);
-
-        Page page = PlaywrightFactory.getPage(browserContext);
-        tlPage.set(page);
+        playwrightFactory.initBrowser(browserName);
     }
 
     @AfterMethod(groups = {"smoke", "regression"})
-    public void tearDown() {
-        if (tlPage.get() != null) {
-            tlPage.get().close();
-            tlPage.remove();
+    public void tearDown(ITestResult result) {
+        if(result.getStatus() == ITestResult.FAILURE){
+            String methodName = result.getMethod().getMethodName();
+            String imagePath = takeScreenshot(methodName);
+            getTest().fail(MediaEntityBuilder.createScreenCaptureFromPath(imagePath).build());
         }
-        if (tlBrowserContext.get() != null) {
-            tlBrowserContext.get().close();
-            tlBrowserContext.remove();
-        }
-        if (tlBrowser.get() != null) {
-            tlBrowser.get().close();
-            tlBrowser.remove();
-        }
-        if (tlPlaywright.get() != null) {
-            tlPlaywright.get().close();
-            tlPlaywright.remove();
-        }
+
+        playwrightFactory.closeBrowser();
     }
 
     protected Playwright getPlaywright() {
-        return tlPlaywright.get();
+        return playwrightFactory.tlPlaywright.get();
     }
 
     protected Browser getBrowser() {
-        return tlBrowser.get();
+        return playwrightFactory.tlBrowser.get();
     }
 
     protected BrowserContext getBContext() {
-        return tlBrowserContext.get();
+        return playwrightFactory.tlBrowserContext.get();
     }
 
     protected Page getPage() {
-        return tlPage.get();
+        return playwrightFactory.tlPage.get();
+    }
+
+    protected String takeScreenshot(String name){
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddhhmmss");
+        String filePath = "screenshots/" + name + df.format(new Date()) + ".png";
+        getPage().screenshot(new Page.ScreenshotOptions()
+                .setPath(Paths.get(filePath))
+                .setFullPage(true));
+
+        return filePath;
     }
 
 
