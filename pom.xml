@@ -16,6 +16,7 @@
         <playwright.version>1.32.0</playwright.version>
         <lombok.version>1.18.26</lombok.version>
         <easy.random.version>5.0.0</easy.random.version>
+        <extent.reports.version>5.0.9</extent.reports.version>
     </properties>
 
     <dependencies>
@@ -28,7 +29,6 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -41,6 +41,11 @@
             <artifactId>easy-random-core</artifactId>
             <version>${easy.random.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>${extent.reports.version}</version>
         </dependency>
     </dependencies>
 
