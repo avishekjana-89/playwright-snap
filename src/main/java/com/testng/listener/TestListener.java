@@ -20,7 +20,6 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        System.out.println("OnStartTest");
         String testName = result.getMethod().getMethodName();
         createTest(testName);
         getTest().assignCategory(result.getMethod().getGroups());
