@@ -1,0 +1,16 @@
+version: "3"
+services:
+  hub:
+    image: seleniarm/hub:4.3.0-20220728  #selenium/hub:4.3.0-20220726
+    ports:
+      - "4444:4444"
+  chrome:
+    image: seleniarm/node-chromium:103.0     #selenium/node-chrome:4.3.0-20220726
+    shm_size: '2g'
+    depends_on:
+      - hub
+    environment:
+      - SE_EVENT_BUS_HOST=hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_GRID_URL=http://localhost:4444/
