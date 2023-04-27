@@ -16,8 +16,7 @@ public class ReportManager {
 
         extent = new ExtentReports();
         ExtentSparkReporter spark = new ExtentSparkReporter("Report.html");
-        spark.config(
-                ExtentSparkReporterConfig.builder()
+        spark.config(ExtentSparkReporterConfig.builder()
                         .theme(Theme.DARK)
                         .documentTitle("MyReport")
                         .reportName("ExtentReport")

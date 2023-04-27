@@ -42,24 +42,18 @@ public final class PlaywrightFactory {
             "msedge", msEdge
     );
 
-    Function<Browser, BrowserContext> contextFunction = (Browser::newContext);
-
-    Browser getBrowser(Playwright playwright, Function<Playwright, Browser> function) {
-        return function.apply(playwright);
-    }
-
-    BrowserContext getBrowserContext(Browser browser, Function<Browser, BrowserContext> function) {
-        return function.apply(browser);
+    Browser getBrowser(String browser) {
+        return browserMap.get(browser).apply(tlPlaywright.get());
     }
 
     public void initBrowser(String browserName){
         Playwright playwright = Playwright.create();
         tlPlaywright.set(playwright);
 
-        Browser browser = getBrowser(playwright, browserMap.get(browserName));
+        Browser browser = getBrowser(browserName);
         tlBrowser.set(browser);
 
-        BrowserContext browserContext = getBrowserContext(browser, contextFunction);
+        BrowserContext browserContext = browser.newContext();
         tlBrowserContext.set(browserContext);
 
         Page page = browserContext.newPage();

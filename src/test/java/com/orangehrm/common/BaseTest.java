@@ -1,4 +1,4 @@
-package com.site.common;
+package com.orangehrm.common;
 
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.microsoft.playwright.Browser;
