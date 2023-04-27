@@ -21,7 +21,7 @@ import static org.jeasy.random.FieldPredicates.named;
 public class AddEmployeeTest extends BaseTest {
 
     @Test(dataProvider = "getData", groups = {"smoke", "regression"})
-    public void addEmployeeTest(String flow, Employee employee) {
+    public void addEmployeeTest(final String flow, final Employee employee) {
         getTest().info("Flow :: " + flow);
         getTest().info("Employee data :: " + employee);
         LoginPage loginPage = new LoginPage(getPage());

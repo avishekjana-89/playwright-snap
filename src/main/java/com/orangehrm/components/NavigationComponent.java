@@ -10,11 +10,11 @@ public class NavigationComponent {
     Page page;
     private final Function<String, Locator> menuFn = (menu -> page.getByText(menu));
 
-    public NavigationComponent(Page page) {
+    public NavigationComponent(final Page page) {
         this.page = page;
     }
 
-    public void menuClick(String menu) {
+    public void menuClick(final String menu) {
         Locator menuItem = menuFn.apply(menu);
         menuItem.click();
     }

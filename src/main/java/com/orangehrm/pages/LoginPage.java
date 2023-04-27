@@ -13,7 +13,7 @@ public class LoginPage extends BasePage {
     Page page;
 
 
-    public LoginPage(Page page) {
+    public LoginPage(final Page page) {
         this.page = page;
         username = page.getByPlaceholder("Username");
         password = page.getByPlaceholder("Password");
