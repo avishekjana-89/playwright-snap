@@ -1,13 +1,12 @@
 package com.orangehrm.tests;
 
-import com.extent.reports.ReportManager;
 import com.orangehrm.models.Employee;
 import com.orangehrm.pages.AddEmployeePage;
 import com.orangehrm.pages.DashboardPage;
 import com.orangehrm.pages.EmployeeListPage;
 import com.orangehrm.pages.LoginPage;
 import com.orangehrm.rules.AddEmployeeRule;
-import com.site.common.BaseTest;
+import com.orangehrm.common.BaseTest;
 import org.jeasy.random.EasyRandom;
 import org.jeasy.random.EasyRandomParameters;
 import org.testng.annotations.DataProvider;

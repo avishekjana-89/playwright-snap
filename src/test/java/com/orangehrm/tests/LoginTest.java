@@ -2,7 +2,7 @@ package com.orangehrm.tests;
 
 import com.orangehrm.pages.DashboardPage;
 import com.orangehrm.pages.LoginPage;
-import com.site.common.BaseTest;
+import com.orangehrm.common.BaseTest;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
