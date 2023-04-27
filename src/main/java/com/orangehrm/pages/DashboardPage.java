@@ -13,7 +13,7 @@ public class DashboardPage extends BasePage {
     private final NavigationComponent component;
     Page page;
 
-    public DashboardPage(Page page) {
+    public DashboardPage(final Page page) {
         this.page = page;
         this.header = this.page.getByRole(AriaRole.HEADING, new Page.GetByRoleOptions().setName("Dashboard"));
         this.component = new NavigationComponent(page);

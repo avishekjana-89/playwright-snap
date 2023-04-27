@@ -7,6 +7,10 @@ import com.aventstack.extentreports.reporter.configuration.ExtentSparkReporterCo
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
 public class ReportManager {
+
+    private ReportManager(){
+    }
+
     private static ExtentReports extent = null;
     private static final ThreadLocal<ExtentTest> tlExtentTest = new ThreadLocal<>();
 

@@ -26,7 +26,7 @@ public class AddEmployeePage extends BasePage {
     private final CreateLoginComponent component;
     Page page;
 
-    public AddEmployeePage(Page page) {
+    public AddEmployeePage(final Page page) {
         this.page = page;
         this.firstName = this.page.getByPlaceholder("First Name");
         this.middleName = this.page.getByPlaceholder("Middle Name");
@@ -44,7 +44,7 @@ public class AddEmployeePage extends BasePage {
         return this.component;
     }
 
-    public void enterEmployeeNameDetails(Employee emp) {
+    public void enterEmployeeNameDetails(final Employee emp) {
         this.firstName.fill(emp.getFirstName());
         this.middleName.fill(emp.getMiddleName());
         this.lastName.fill(emp.getLastName());
@@ -52,7 +52,7 @@ public class AddEmployeePage extends BasePage {
         this.employeeId.fill(emp.getEmployeeId());
     }
 
-    public void uploadPhoto(Employee emp) {
+    public void uploadPhoto(final Employee emp) {
         FileChooser fileChooser = this.page.waitForFileChooser(this.imageIcon::click);
         fileChooser.setFiles(Paths.get(emp.getImagePath()));
     }

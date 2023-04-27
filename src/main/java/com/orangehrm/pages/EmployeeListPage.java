@@ -11,7 +11,7 @@ public class EmployeeListPage extends BasePage {
     private final Locator addEmployee;
     Page page;
 
-    public EmployeeListPage(Page page) {
+    public EmployeeListPage(final Page page) {
         this.page = page;
         this.employeeList = this.page.getByText("Employee List");
         this.addEmployee = this.page.getByText("Add Employee");
