@@ -1,11 +1,11 @@
 version: "3"
 services:
   hub:
-    image: seleniarm/hub:4.3.0-20220728  #selenium/hub:4.3.0-20220726
+    image: seleniarm/hub:4.9.0  #selenium/hub:4.9.0
     ports:
       - "4444:4444"
   chrome:
-    image: seleniarm/node-chromium:103.0     #selenium/node-chrome:4.3.0-20220726
+    image: seleniarm/node-chromium:latest     #selenium/node-chrome:latest
     shm_size: '2g'
     depends_on:
       - hub
