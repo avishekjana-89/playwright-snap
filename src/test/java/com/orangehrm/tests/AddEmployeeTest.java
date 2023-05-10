@@ -52,7 +52,7 @@ public class AddEmployeeTest extends BaseTest {
                 .charset(StandardCharsets.UTF_8)
                 .stringLengthRange(8, 20)
                 .randomize(named("employeeId|username").and(inClass(Employee.class)),
-                        () -> String.valueOf(System.nanoTime() / 10000));
+                        () -> String.valueOf(System.nanoTime()).substring(0, 10));
 
         EasyRandom random = new EasyRandom(parameters);
         Employee empDetailsWithoutImg = random.nextObject(Employee.class);
