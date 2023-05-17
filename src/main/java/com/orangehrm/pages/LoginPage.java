@@ -6,7 +6,7 @@ import com.microsoft.playwright.options.AriaRole;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-public class LoginPage extends BasePage {
+public class LoginPage implements BasePage {
     private final Locator username;
     private final Locator password;
     private final Locator loginBtn;

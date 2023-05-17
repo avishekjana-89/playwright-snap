@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static com.extent.reports.ReportManager.getTest;
+import static com.extent.reports.ReportManager.endTest;
 
 public class BaseTest {
 
@@ -38,7 +39,7 @@ public class BaseTest {
             String imagePath = takeScreenshot(methodName);
             getTest().fail(MediaEntityBuilder.createScreenCaptureFromPath(imagePath).build());
         }
-
+        endTest();
         playwrightFactory.closeBrowser();
     }
 

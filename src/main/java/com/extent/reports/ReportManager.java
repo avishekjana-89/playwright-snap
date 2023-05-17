@@ -42,4 +42,8 @@ public class ReportManager {
         return tlExtentTest.get();
     }
 
+    public static void endTest(){
+        tlExtentTest.remove();
+    }
+
 }

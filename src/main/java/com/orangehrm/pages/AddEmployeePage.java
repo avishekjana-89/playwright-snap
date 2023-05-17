@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-public class AddEmployeePage extends BasePage {
+public class AddEmployeePage implements BasePage {
 
     private final Locator firstName;
     private final Locator middleName;

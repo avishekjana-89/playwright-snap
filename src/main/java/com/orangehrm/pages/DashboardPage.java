@@ -7,7 +7,7 @@ import com.orangehrm.components.NavigationComponent;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-public class DashboardPage extends BasePage {
+public class DashboardPage implements BasePage {
 
     private final Locator header;
     private final NavigationComponent component;

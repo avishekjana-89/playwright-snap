@@ -5,7 +5,7 @@ import com.microsoft.playwright.Page;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-public class EmployeeListPage extends BasePage {
+public class EmployeeListPage implements BasePage {
 
     private final Locator employeeList;
     private final Locator addEmployee;
