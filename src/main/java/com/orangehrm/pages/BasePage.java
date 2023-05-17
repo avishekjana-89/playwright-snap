@@ -1,5 +1,5 @@
 package com.orangehrm.pages;
 
-public abstract class BasePage {
-    abstract BasePage isDisplayed();
+public interface BasePage {
+    BasePage isDisplayed();
 }
